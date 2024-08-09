@@ -15,16 +15,16 @@ app.get('/hello', (req, res) => {
     res.send('Euy')
   })  
 
-app.post('/login', (req, res)=>{
+app.post('/login', (req, res) => {
     console.log({requestFromOutside: req.body})
     res.send('login successful')
 })
 
-app.put('/username', (req,res)=>{
+app.put('/username', (req,res) => { 
     console.log({ updateData: req.body})
     res.send('update berhasil')
 })
 
-app.listen(port, () => {
+app.listen(port, () =>{
   console.log(`Example app listening on port ${port}`)
 })
