@@ -1,6 +1,7 @@
 {
   "name": "boostify-backend",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "mitchgo": "nodemon  index.js",
