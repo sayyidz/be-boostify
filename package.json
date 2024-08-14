@@ -3,23 +3,27 @@
   "version": "1.0.0",
   "main": "src/index.js",
   "scripts": {
-    "mitchgo": "nodemon  index.js",
+    "start": "nodemon  ./src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Mitchel & Sayyid",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.20.2",
-    "nodemon": "^3.1.4",
     "@prisma/client": "^5.18.0",
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
-    "mysql2": "^3.11.0"
+    "mysql": "^2.18.1",
+    "mysql2": "^3.11.0",
+    "nodemon": "^3.1.4"
   },
   "devDependencies": {
+    "@eslint/js": "^9.9.0",
+    "eslint": "^9.9.0",
+    "globals": "^15.9.0",
     "prisma": "^5.18.0"
   }
 }
