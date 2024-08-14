@@ -19,3 +19,10 @@ model users {
   email    String @unique(map: "email") @db.VarChar(255)
   password String @db.VarChar(255)
 }
+
+model assisstant {
+  id              Int      @id @default(autoincrement())
+  assisstant_code String   @db.VarChar(3)
+  name            String   @db.VarChar(255)
+  time            DateTime @db.DateTime(0)
+}
