@@ -19,7 +19,7 @@ const getAttendanceByNameController = async (req, res) => {
             success: true,
             payload: attendanceData.assistances,
             pagination: {
-                totalItems: attendanceData.total,
+                totalAttendance: attendanceData.total,
                 totalPages: attendanceData.totalPages,
                 currentPage: attendanceData.currentPage,
             },
