@@ -24,14 +24,15 @@ const getAttendanceByName = async (name, page = 1, limit = 5) => {
         return null;  // Return null if no records found
     }
 
-    const groupedData = {
-        assistanceCode: assistances[0].assisstant_code,
-        timestamps: assistances.map(record => record.time),
-    };
+    const formattedAttendances = assistances.map(record => ({
+        time: record.time.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }),
+        rawTime: record.time
+    }));
 
     return {
         name,
-        assistance: groupedData,
+        assistanceCode: assistances[0].assisstant_code,
+        attendancesTime: formattedAttendances,
         total,
         currentPage: page,
         totalPages: Math.ceil(total / limit),
