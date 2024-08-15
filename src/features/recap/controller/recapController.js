@@ -22,7 +22,6 @@ const getAttendanceRecapController = async (req, res) => {
         res.status(500).json({
             success: false,
             message: 'An error occurred while fetching the attendance recap data',
-            message: 'An error occurred while fetching the attendance recap data',
             error: error.message,
         });
     }

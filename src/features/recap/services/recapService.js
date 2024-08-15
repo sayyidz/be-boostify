@@ -53,11 +53,16 @@ const getAttendanceRecap = async (page = 1, limit = 5) => {
                 where: { name: item.name },
                 select: {
                     assisstant_code: true,
+                    time: true,
+                },
+                orderBy: {
+                    time: 'desc',
                 },
             });
             return {
                 name: item.name,
                 assisstant_code: assistant.assisstant_code,
+                lastAttendance: assistant.time,
                 totalAttendance: item._count.name,
             };
         })
