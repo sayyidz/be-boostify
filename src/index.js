@@ -14,8 +14,6 @@ app.use("/api", Routes);
 app.use("/dailyattendance", attendanceRoutes);
 app.use("/records", personalRecords);
 
-
-
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
