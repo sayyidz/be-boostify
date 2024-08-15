@@ -10,7 +10,6 @@ const personalRecordsController = require('../features/personalrecords/controlle
 
 router.get('/attendances', attendanceController);
 router.get('/personalrec', personalRecordsController);
-// router.post('/personalrec', personalRecordsController);
 
 router.post("/auth/login", loginController);
 router.post("/auth/register", registerController);
