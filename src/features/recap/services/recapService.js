@@ -1,26 +1,73 @@
-// services/attendanceService.js
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-const getAttendanceRecap = async (page = 1, limit = 8) => {
-    const skip = (page - 1) * limit;
+const getAttendanceRecap = async (page = 1, limit = 5) => {
+    const topLimit = 3;
+    let skip = (page - 1) * limit;
 
-    // Grouping data by name and counting total attendance for each user
-    const groupedAttendance = await prisma.assisstant.groupBy({
+    const topAttendances = page === 1 ? await prisma.assisstant.groupBy({
         by: ['name'],
         _count: {
             name: true,
         },
         orderBy: {
             _count: {
-                name: 'desc', // Order by attendance count (number of times a name appears)
+                name: 'desc',
+            },
+        },
+        take: topLimit,
+    }) : [];
+
+    const topNames = topAttendances.map(item => item.name);
+
+    if (page === 1) {
+        skip = 0;
+    } else {
+        skip += topLimit;
+    }
+
+    const otherAttendances = await prisma.assisstant.groupBy({
+        by: ['name'],
+        _count: {
+            name: true,
+        },
+        orderBy: {
+            _count: {
+                name: 'desc',
+            },
+        },
+        where: {
+            name: {
+                notIn: topNames,
             },
         },
         skip,
         take: limit,
     });
 
-    // Get the total number of distinct names (for pagination purposes)
+    const allAttendances = [...topAttendances, ...otherAttendances];
+
+    const attendances = await Promise.all(
+        allAttendances.map(async (item) => {
+            const assistant = await prisma.assisstant.findFirst({
+                where: { name: item.name },
+                select: {
+                    assisstant_code: true,
+                    time: true,
+                },
+                orderBy: {
+                    time: 'desc',
+                },
+            });
+            return {
+                name: item.name,
+                assisstant_code: assistant.assisstant_code,
+                lastAttendance: assistant.time,
+                totalAttendance: item._count.name,
+            };
+        })
+    );
+
     const totalNames = await prisma.assisstant.groupBy({
         by: ['name'],
         _count: {
@@ -29,10 +76,10 @@ const getAttendanceRecap = async (page = 1, limit = 8) => {
     });
 
     return {
-        attendances: groupedAttendance,
+        attendances,
         total: totalNames.length,
         currentPage: page,
-        totalPages: Math.ceil(totalNames.length / limit),
+        totalPages: Math.ceil((totalNames.length - topLimit) / limit) + 1,
     };
 };
 

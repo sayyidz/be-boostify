@@ -1,16 +1,18 @@
-// controllers/attendanceRecapController.js
 const { getAttendanceRecap } = require('../services/recapService');
 
 const getAttendanceRecapController = async (req, res) => {
     try {
-        const { page = 1, limit = 8 } = req.query; // Default to page 1 and limit 8 if not provided
-
+        const { page = 1, limit = 5 } = req.query;
         const recapData = await getAttendanceRecap(Number(page), Number(limit));
 
         res.status(200).json({
             success: true,
             payload: recapData.attendances,
+            payload: recapData.attendances,
             pagination: {
+                totalItems: recapData.total,
+                totalPages: recapData.totalPages,
+                currentPage: recapData.currentPage,
                 totalItems: recapData.total,
                 totalPages: recapData.totalPages,
                 currentPage: recapData.currentPage,
@@ -26,3 +28,4 @@ const getAttendanceRecapController = async (req, res) => {
 };
 
 module.exports = getAttendanceRecapController;
+
