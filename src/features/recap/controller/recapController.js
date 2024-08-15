@@ -1,63 +1,25 @@
-// const {
-//     getTopThreeAttendances,
-//     getUsersBelowTopThree,
-//   } = require('../services/attendanceService');
-  
-//   const getAttendances = async (req, res) => {
-//     const { page } = req.query;
-//     const pageNumber = Number(page) || 1;
-  
-//     try {
-//       if (pageNumber === 1) {
-//         const topThreeUsers = await getTopThreeAttendances();
-//         const topUserIds = topThreeUsers.map(user => user.user.id);
-//         const nextFiveUsers = await getUsersBelowTopThree(topUserIds, 1);
-  
-//         res.json({
-//           topThree: topThreeUsers,
-//           users: nextFiveUsers,
-//         });
-//       } else {
-//         const topThreeUsers = await getTopThreeAttendances();
-//         const topUserIds = topThreeUsers.map(user => user.user.id);
-//         const users = await getUsersBelowTopThree(topUserIds, pageNumber);
-  
-//         res.json({
-//           users,
-//         });
-//       }
-//     } catch (error) {
-//       console.error(error);
-//       res.status(500).json({ message: 'An error occurred' });
-//     }
-//   };
-  
-//   module.exports = {
-//     getAttendances,
-//   };
-
+// controllers/attendanceRecapController.js
 const { getAttendanceRecap } = require('../services/recapService');
 
 const getAttendanceRecapController = async (req, res) => {
     try {
-        const page = Number(req.query.page) || 1;
-        const limit = Number(req.query.limit) || 8;
+        const { page = 1, limit = 8 } = req.query; // Default to page 1 and limit 8 if not provided
 
-        const attendanceData = await getAttendanceRecap(page, limit);
+        const recapData = await getAttendanceRecap(Number(page), Number(limit));
 
         res.status(200).json({
             success: true,
-            payload: attendanceData.attendances,
+            payload: recapData.attendances,
             pagination: {
-                totalItems: attendanceData.total,
-                totalPages: attendanceData.totalPages,
-                currentPage: attendanceData.currentPage,
+                totalItems: recapData.total,
+                totalPages: recapData.totalPages,
+                currentPage: recapData.currentPage,
             },
         });
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'An error occurred while fetching attendance data',
+            message: 'An error occurred while fetching the attendance recap data',
             error: error.message,
         });
     }

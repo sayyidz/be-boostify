@@ -15,9 +15,16 @@ const getAttendanceByNameController = async (req, res) => {
 
         const attendanceData = await getAttendanceByName(name, Number(page) || 1, Number(limit) || 5);
 
+        if (!attendanceData) {
+            return res.status(404).json({
+                success: false,
+                message: 'No attendance records found for the specified name',
+            });
+        }
+
         res.status(200).json({
             success: true,
-            payload: attendanceData.assistances,
+            payload: attendanceData,
             pagination: {
                 totalAttendance: attendanceData.total,
                 totalPages: attendanceData.totalPages,
