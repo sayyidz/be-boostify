@@ -26,3 +26,9 @@ model blacklistedtoken {
   token     String   @unique(map: "token") @db.VarChar(255)
   createdAt DateTime @default(now()) @db.DateTime(0)
 }
+
+model attendancedevice {
+  id              Int    @id @default(autoincrement())
+  assisstant_code String @db.VarChar(255)
+  name            String @db.VarChar(255)
+}
