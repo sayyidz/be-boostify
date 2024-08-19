@@ -11,7 +11,7 @@ const personalRecordsController = require('../features/personalrecords/controlle
 const accessValidation = require('../middlewares/authMiddleware');
 const profileController = require('../features/avatar/controller/avatarController');
 
-router.get("/recap", recapController)
+router.get("/recap", accessValidation ,recapController)
 router.get('/attendances', accessValidation ,attendanceController);
 router.get('/personalrec', accessValidation, personalRecordsController);
 router.get('/avatar', accessValidation, profileController);

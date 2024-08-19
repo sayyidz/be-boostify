@@ -5,7 +5,7 @@ const profileController = async (req, res) => {
     console.log('User data:', user);
     const assistantCode = await getAssistantCode(user.name);
   
-    res.json({ user: user.name, assistantCode });
+    res.json({ name: user.name, assistantCode });
 };
 
 module.exports = profileController;
