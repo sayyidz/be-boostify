@@ -11,7 +11,19 @@ model assisstant {
   id              Int      @id @default(autoincrement())
   assisstant_code String   @db.VarChar(3)
   name            String   @db.VarChar(255)
-  time            DateTime @default(now()) @db.Timestamp(0)
+  time            DateTime @db.DateTime(0)
+}
+
+model attendancedevice {
+  id              Int    @id @default(autoincrement())
+  assisstant_code String @unique(map: "assisstant_code") @db.VarChar(3)
+  name            String @db.VarChar(255)
+}
+
+model blacklistedtoken {
+  id        Int       @id @default(autoincrement())
+  token     String    @unique(map: "token") @db.VarChar(255)
+  createdAt DateTime? @default(now()) @db.DateTime(0)
 }
 
 model users {
@@ -19,16 +31,4 @@ model users {
   name     String @db.VarChar(255)
   email    String @unique(map: "email") @db.VarChar(255)
   password String @db.VarChar(255)
-}
-
-model blacklistedtoken {
-  id        Int      @id @default(autoincrement())
-  token     String   @unique(map: "token") @db.VarChar(255)
-  createdAt DateTime @default(now()) @db.DateTime(0)
-}
-
-model attendancedevice {
-  id              Int    @id @default(autoincrement())
-  assisstant_code String @db.VarChar(255)
-  name            String @db.VarChar(255)
 }

@@ -5,9 +5,7 @@ const getAttendanceRecap = async (page = 1, limit = 5, untilDate) => {
     const topLimit = 3;
     let skip = (page - 1) * limit;
 
-    // Pastikan untilDate termasuk waktu maksimal pada hari itu
     const dateFilter = untilDate ? new Date(`${untilDate}T23:59:59.999Z`) : undefined;
-    console.log('Filter until date:', dateFilter); // Log for debugging
 
     const topAttendances = page === 1 ? await prisma.assisstant.groupBy({
         by: ['name'],
