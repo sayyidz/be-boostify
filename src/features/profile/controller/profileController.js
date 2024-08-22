@@ -4,7 +4,7 @@ const getImageByUserNameController = async (req, res) => {
     try {
       // Ambil URL gambar dari service
       const imageUrl = await getImageByUserName(req.user.id);
-  
+
       // Kirim URL gambar sebagai respons
       return res.json({ imageUrl });
     } catch (error) {
@@ -15,6 +15,6 @@ const getImageByUserNameController = async (req, res) => {
       return res.status(500).json({ error: 'An error occurred' });
     }
   };
-  
+
 
 module.exports = getImageByUserNameController;

@@ -11,15 +11,19 @@ const personalRecordsController = require('../features/personalrecords/controlle
 const accessValidation = require('../middlewares/authMiddleware');
 const avatarController = require('../features/avatar/controller/avatarController');
 const profileController = require("../features/profile/controller/profileController");
+const userController = require('../features/whoami/controller/whoamiController');
+
 
 router.get("/recap", accessValidation ,recapController)
-router.get('/attendances', attendanceController);
+router.get('/attendances', accessValidation, attendanceController);
 router.get('/personalrec', accessValidation, personalRecordsController);
 router.get('/avatar', accessValidation, avatarController);
 router.get('/profile', accessValidation, profileController);
+router.get('/whoami', accessValidation, userController);
 
 router.post("/auth/login", loginController);
 router.post("/auth/register", registerController);
 router.post("/auth/logout", accessValidation ,logoutController);
+
 
 module.exports = router;
