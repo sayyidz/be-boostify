@@ -17,7 +17,6 @@ const cors = require('cors');
 
 app.use(express.json());
 
-<<<<<<< HEAD
 app.use(cors());
 // app.use(
 //   cors({
@@ -34,12 +33,6 @@ app.use(cors());
 app.get('/', (req, res) => {
   res.send('Hello World!');
 })
-=======
-app.use(
-  cors()
-);
-
->>>>>>> 77ceec975e8eb116bd1630de1a80375f115e0dec
 app.use("/api", Routes);
 
 app.listen(PORT, () => {
