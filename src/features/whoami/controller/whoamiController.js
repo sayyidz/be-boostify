@@ -12,7 +12,8 @@ const whoAmI = async (req, res) => {
         res.json({
             id: userInfo.id,       // Syncs with 'id' field in User model
             name: userInfo.name,   // Syncs with 'name' field in User model
-            email: userInfo.email, // Syncs with 'email' field in User model
+            assisstant_code: userInfo.assisstant_code,
+            image_url: userInfo.imageUrl // Syncs with 'email' field in User model
         });
     } catch (error) {
         res.status(500).json({ message: 'Something went wrong' });
