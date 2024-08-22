@@ -2,7 +2,7 @@ const { getAttendanceByName } = require('../services/personalrecServices');
 
 const getAttendanceByNameController = async (req, res) => {
     try {
-        const user = req.user; // Assuming `req.user` contains user information from the token
+        const user = req.user;
         const { page, limit } = req.query;
 
         if (!user || !user.name) {

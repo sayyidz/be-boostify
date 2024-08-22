@@ -16,7 +16,7 @@ const accessValidation = async (req, res, next) => {
 
     const token = authorization.split(" ")[1];
 
-    const blacklistedToken = await prisma.blacklistedtoken.findUnique({
+    const blacklistedToken = await prisma.blacklistedToken.findUnique({
         where: { token },
     });
 

@@ -2,19 +2,18 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 const getAttendance = async (page = 1, limit = 5) => {
-    const assistances = await prisma.assisstant.findMany({
+    const assistances = await prisma.attendance.findMany({
         skip: (page - 1) * limit,
         take: limit,
         orderBy: { time: 'desc' },
     });
 
-    const total = await prisma.assisstant.count();
+    const total = await prisma.attendance.count();
 
-    // Format the time to include the day in the output
     const formattedAssistances = assistances.map(record => ({
         ...record,
         formattedTime: record.time.toLocaleDateString('en-US', {
-            weekday: 'long',  // Include the full day name (e.g., "Monday")
+            weekday: 'long',
             year: 'numeric',
             month: 'long',
             day: 'numeric'

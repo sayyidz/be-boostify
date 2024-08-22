@@ -6,7 +6,7 @@ require('dotenv').config();
 const prisma = new PrismaClient();
 
 const loginUser = async (email, password) => {
-  const user = await prisma.users.findUnique({
+  const user = await prisma.user.findUnique({
     where: { email },
   });
 
@@ -25,7 +25,16 @@ const loginUser = async (email, password) => {
     email: user.email,
   };
 
+<<<<<<< HEAD
   const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '23h' });
+=======
+  const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+  // res.cookie('jwt', token, {
+  //   httpOnly: true,
+  //   secure: process.env.NODE_ENV === 'production', // Hanya kirim melalui HTTPS di production
+  //   maxAge: 3600000, // 1 jam
+  // });
+>>>>>>> 77ceec975e8eb116bd1630de1a80375f115e0dec
 
   const data = {
     status: true,

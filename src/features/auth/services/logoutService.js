@@ -6,7 +6,7 @@ const logoutUser = async (token) => {
     try {
         const decoded = jwt.decode(token);
 
-        await prisma.blacklistedtoken.create({
+        await prisma.blacklistedToken.create({
             data: {
                 token: token,
             },
