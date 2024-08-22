@@ -11,6 +11,7 @@ const getUserInfo = async (userId) => {
         throw new Error('Error retrieving user information.');
     }
 };
+
 module.exports = {
     getUserInfo,
 };
