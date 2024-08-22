@@ -5,20 +5,12 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-<<<<<<< HEAD
-    "start:dev": "nodemon ./src/index.mjs",
-    "start": "node ./src/index.mjs"
-=======
     "dev": "nodemon ./src/index.js"
->>>>>>> 77ceec975e8eb116bd1630de1a80375f115e0dec
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-<<<<<<< HEAD
-    "express": "^4.19.2"
-=======
     "@prisma/client": "^5.18.0",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
@@ -34,6 +26,5 @@
   "devDependencies": {
     "nodemon": "^3.1.4",
     "prisma": "^5.18.0"
->>>>>>> 77ceec975e8eb116bd1630de1a80375f115e0dec
   }
 }
