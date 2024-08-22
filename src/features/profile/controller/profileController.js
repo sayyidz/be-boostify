@@ -1,3 +1,5 @@
+const { getImageByUserName } = require('../services/profileService');
+
 const getImageByUserNameController = async (req, res) => {
     try {
       // Ambil URL gambar dari service

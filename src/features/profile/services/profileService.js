@@ -1,22 +1,27 @@
-require('dotenv').config();
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
 
-const getImageUrl = (fileName, userName) => {
-    const baseUrl = process.env.IMAGEKIT_URL_ENDPOINT;
+const getImageByUserName = async (userId) => {
+    // Ambil nama pengguna dari model User
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+    });
 
-    if (!fileName || !userName) {
-        throw new Error('File name and user name are required to retrieve the image URL.');
+    if (!user) {
+      throw new Error('User not found');
     }
 
-    // Ensure the file name includes the user's name for security
-    if (!fileName.includes(userName)) {
-        throw new Error('File name does not match the user name.');
+    // Cari pada model Assistant berdasarkan nama
+    const assistant = await prisma.assisstant.findUnique({
+      where: { name: user.name },
+    });
+
+    if (!assistant || !assistant.imageUrl) {
+      throw new Error('Image not found');
     }
 
-    // Construct the full URL for the image
-    const imageUrl = `${baseUrl}${fileName}`;
-    return imageUrl;
-};
+    // Kembalikan URL gambar
+    return assistant.imageUrl;
+  };
 
-module.exports = {
-    getImageUrl
-};
+  module.exports = { getImageByUserName };
