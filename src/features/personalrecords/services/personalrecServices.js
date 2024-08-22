@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 const getAttendanceByName = async (name, page = 1, limit = 5) => {
     const skip = (page - 1) * limit;
 
-    const assistances = await prisma.assisstant.findMany({
+    const assistances = await prisma.attendance.findMany({
         where: { name },
         skip,
         take: limit,
@@ -18,10 +18,10 @@ const getAttendanceByName = async (name, page = 1, limit = 5) => {
         },
     });
 
-    const total = await prisma.assisstant.count({ where: { name } });
+    const total = await prisma.attendance.count({ where: { name } });
 
     if (assistances.length === 0) {
-        return null;  // Return null if no records found
+        return null;
     }
 
     const formattedAttendances = assistances.map(record => ({

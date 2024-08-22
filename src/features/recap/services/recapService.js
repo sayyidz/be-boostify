@@ -7,7 +7,7 @@ const getAttendanceRecap = async (page = 1, limit = 5, untilDate) => {
 
     const dateFilter = untilDate ? new Date(`${untilDate}T23:59:59.999Z`) : undefined;
 
-    const topAttendances = page === 1 ? await prisma.assisstant.groupBy({
+    const topAttendances = page === 1 ? await prisma.attendance.groupBy({
         by: ['name'],
         _count: {
             name: true,
@@ -28,7 +28,7 @@ const getAttendanceRecap = async (page = 1, limit = 5, untilDate) => {
         skip += topLimit;
     }
 
-    const otherAttendances = await prisma.assisstant.groupBy({
+    const otherAttendances = await prisma.attendance.groupBy({
         by: ['name'],
         _count: {
             name: true,
@@ -51,7 +51,7 @@ const getAttendanceRecap = async (page = 1, limit = 5, untilDate) => {
 
     const attendances = await Promise.all(
         allAttendances.map(async (item) => {
-            const assistant = await prisma.assisstant.findFirst({
+            const assistant = await prisma.attendance.findFirst({
                 where: { 
                     name: item.name, 
                     time: dateFilter ? { lte: dateFilter } : undefined 
@@ -81,7 +81,7 @@ const getAttendanceRecap = async (page = 1, limit = 5, untilDate) => {
 
     const filteredAttendances = attendances.filter(item => item !== null);
 
-    const totalNames = await prisma.assisstant.groupBy({
+    const totalNames = await prisma.attendance.groupBy({
         by: ['name'],
         _count: {
             name: true,

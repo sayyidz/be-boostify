@@ -1,7 +1,7 @@
 const { getAssistantCode } = require("../services/avatarService")
 
 const profileController = async (req, res) => {
-    const user = req.user; // Asumsikan user sudah ada di req setelah autentikasi
+    const user = req.user;
     console.log('User data:', user);
     const assistantCode = await getAssistantCode(user.name);
   
