@@ -10,14 +10,17 @@ const attendanceController = require('../features/live_attendance/controller/att
 const personalRecordsController = require('../features/personalrecords/controller/personalrecController');
 const accessValidation = require('../middlewares/authMiddleware');
 const profileController = require('../features/avatar/controller/avatarController');
+const getImageUrlController  = require('../features/profile/controller/profileController');
 
 router.get("/recap", accessValidation ,recapController)
 router.get('/attendances', accessValidation, attendanceController);
 router.get('/personalrec', accessValidation, personalRecordsController);
 router.get('/avatar', accessValidation, profileController);
+router.get('/image/:fileName', accessValidation,getImageUrlController);
 
 router.post("/auth/login", loginController);
 router.post("/auth/register", registerController);
 router.post("/auth/logout", accessValidation ,logoutController);
+
 
 module.exports = router;
