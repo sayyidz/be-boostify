@@ -3,11 +3,7 @@ const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient();
 
-const registerUser = async (name, email, password) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      throw new Error("Invalid email format");
-    }
+const registerUser = async (name, assisstant_code, password) => {
 
     if (password.length < 6) {
         return {
@@ -17,10 +13,10 @@ const registerUser = async (name, email, password) => {
     }
     
     const hashedPassword = await bcrypt.hash(password, 10);
-    const result =  await prisma.user.create({
+    const result =  await prisma.assisstant.create({
         data: {
             name,
-            email,
+            assisstant_code,
             password: hashedPassword
         }
     });
