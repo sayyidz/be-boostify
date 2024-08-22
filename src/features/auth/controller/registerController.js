@@ -2,7 +2,7 @@ const { registerUser } = require("../services/registerService")
 
 const register = async (req, res) => {
     try {
-        const regis = await registerUser(req.body.name, req.body.email, req.body.password);
+        const regis = await registerUser(req.body.name, req.body.assisstant_code, req.body.password);
         res.status(200).json(
             {
                 regis,

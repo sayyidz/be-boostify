@@ -18,7 +18,7 @@ model Assisstant {
   id              Int     @id @default(autoincrement())
   assisstant_code String  @unique(map: "assisstant_code") @db.VarChar(3)
   name            String  @unique @db.VarChar(255)
-  password        String @db.VarChar(255)
+  password        String  @db.VarChar(255)
   imageUrl        String? @db.VarChar
 }
 

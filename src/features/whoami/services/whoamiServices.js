@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 const getUserInfo = async (userId) => {
     try {
-        return await prisma.user.findUnique({
+        return await prisma.assisstant.findUnique({
             where: { id: userId }, // This corresponds to the 'id' field in your User model
         });
     } catch (error) {
