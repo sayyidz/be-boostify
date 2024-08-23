@@ -5,9 +5,9 @@ require('dotenv').config();
 
 const prisma = new PrismaClient();
 
-const loginUser = async (email, password) => {
-  const user = await prisma.user.findUnique({
-    where: { email },
+const loginUser = async (assisstant_code, password) => {
+  const user = await prisma.assisstant.findUnique({
+    where: { assisstant_code },
   });
 
   if (!user) {
@@ -22,7 +22,7 @@ const loginUser = async (email, password) => {
   const payload = {
     id: user.id,
     name: user.name,
-    email: user.email,
+    assisstant_code: user.assisstant_code,
   };
 
   const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
