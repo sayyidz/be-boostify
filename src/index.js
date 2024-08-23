@@ -1,15 +1,15 @@
 const express = require('express');
-// const { PrismaClient } = require('@prisma/client');
-const dotenv = require('dotenv');
-
-// Load environment variables from .env file
-dotenv.config();
-
 const app = express();
 require('dotenv').config();   
 const PORT = process.env.PORT || 3000;
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
 
-// Middleware to parse JSON requests
+const Routes = require("./routes/routes");
+const attendanceRoutes = require('./routes/routes');
+const personalRecords = require('./routes/routes');
+const cors = require('cors');
+
 app.use(express.json());
 app.use(cors());
 
