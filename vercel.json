@@ -1,10 +1,19 @@
 {
-    "version": 2,
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/src/index.js"
-      }
-    ]
-  }
-  
+  "version": 2,
+  "builds": [
+    {
+      "src": "src/index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "src/index.js"
+    }
+  ],
+  "env": {
+    "DATABASE_URL": "postgresql://postgres.rmqrhifjmlvxfgnbwqzb:boostifycps@2022@aws-0-ap-southeast-1.pooler.supabase.com:5432/postgres" 
+  },
+  "outputDirectory": "build"
+}
