@@ -25,7 +25,8 @@
     "imagekit": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.11.0",
-    "redis": "^4.7.0"
+    "redis": "^4.7.0",
+    "vercel": "^37.1.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.4",
