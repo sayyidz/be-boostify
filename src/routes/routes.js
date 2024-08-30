@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
+const upload = multer(); 
 
 const loginController = require("../features/auth/controller/loginController");
 const registerController = require("../features/auth/controller/registerController");
