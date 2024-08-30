@@ -8,6 +8,7 @@ const updateUserImageUrl = async (id, imageFile) => {
         const uploadResponse = await imagekit.upload({
             file: imageFile.buffer.toString('base64'), // Convert buffer to base64 string
             fileName: `user-${id}-${Date.now()}` // Unique file name
+            folder: '/Boostify'
         });
 
         const imageUrl = uploadResponse.url;
