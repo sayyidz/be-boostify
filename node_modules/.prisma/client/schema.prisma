@@ -8,22 +8,22 @@ datasource db {
 }
 
 model Attendance {
-  id              Int      @id @default(autoincrement())
   assisstant_code String   @db.VarChar(3)
   name            String   @db.VarChar(255)
   time            DateTime @db.Timestamp(6)
+  uuid            String   @id @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
 }
 
 model Assisstant {
   id              Int     @id @default(autoincrement())
-  assisstant_code String  @unique(map: "assisstant_code") @db.VarChar(3)
+  assisstant_code String  @unique @db.VarChar(3)
   name            String  @unique @db.VarChar(255)
+  imageUrl        String? @default("") @db.VarChar
   password        String  @db.VarChar(255)
-  imageUrl        String? @db.VarChar
 }
 
 model BlacklistedToken {
   id        Int      @id @default(autoincrement())
   token     String   @unique(map: "token") @db.VarChar(255)
-  createdAt DateTime @default(now()) @db.Timestamp(6)
+  createdAt DateTime @db.Timestamptz(6)
 }
