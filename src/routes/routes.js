@@ -11,6 +11,7 @@ const accessValidation = require('../middlewares/authMiddleware');
 const userController = require('../features/whoami/controller/whoamiController');
 const upImageController = require('../features/uploadImage/controller/uploadImageController')
 const deleteUserImage = require('../features/uploadImage/controller/deleteImageController')
+const uploadAttendanceData = require('../features/recap/controller/sendDataController')
 
 router.get("/recap", accessValidation ,recapController)
 router.get('/attendances', accessValidation, attendanceController);
@@ -20,6 +21,7 @@ router.get('/whoami', accessValidation, userController);
 router.patch('/uploadImage', accessValidation, upImageController)
 router.delete('/deleteImage', accessValidation, deleteUserImage);
 
+router.post("/uploadfromml", uploadAttendanceData);
 router.post("/auth/login", loginController);
 router.post("/auth/register", registerController);
 router.post("/auth/logout", accessValidation ,logoutController.logoutController);
