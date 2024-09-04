@@ -25,7 +25,7 @@ const loginUser = async (assisstant_code, password) => {
     assisstant_code: user.assisstant_code,
   };
 
-  const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '23h' });
+  const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '24h' });
   // res.cookie('jwt', token, {
   //   httpOnly: true,
   //   secure: process.env.NODE_ENV === 'production', // Hanya kirim melalui HTTPS di production
