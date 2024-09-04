@@ -25,6 +25,21 @@ const logoutUser = async (token) => {
     }
 };
 
+const deleteExpiredTokens = async () => {
+    const tenHoursAgo = new Date(Date.now() - 60 * 1000);
+
+    try {
+        const deletedTokens = await prisma.blacklistedToken.deleteMany({
+            where: { createdAt: { lt: tenHoursAgo } },
+        });
+
+        console.log(`Deleted ${deletedTokens.count} expired tokens.`);
+    } catch (error) {
+        console.error('Error deleting expired tokens:', error);
+    }
+};
+
 module.exports = {
     logoutUser,
+    deleteExpiredTokens
 };

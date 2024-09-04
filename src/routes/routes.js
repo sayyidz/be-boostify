@@ -22,7 +22,8 @@ router.delete('/deleteImage', accessValidation, deleteUserImage);
 
 router.post("/auth/login", loginController);
 router.post("/auth/register", registerController);
-router.post("/auth/logout", accessValidation ,logoutController);
+router.post("/auth/logout", accessValidation ,logoutController.logoutController);
+router.delete("/remove-token", logoutController.removeExpiredTokens)
 
 
 
