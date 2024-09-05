@@ -12,6 +12,7 @@ const cors = require('cors');
 const allowedOrigins = [
   "https://boostify-back-end.vercel.app",
   "https://boostify-back-end.vercel.app/api/attendances",
+  "https://boostify-front-end.vercel.app",
   "http://localhost:3000",
 ];
 
