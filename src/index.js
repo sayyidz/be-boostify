@@ -10,7 +10,6 @@ const Routes = require("./routes/routes");
 const cors = require('cors');
 
 const allowedOrigins = [
-  "https://boostify-front-end.vercel.app",
   "https://boostify-fe.vercel.app",
   "http://localhost:3000",
 ];
