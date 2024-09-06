@@ -1,39 +1,34 @@
 const express = require('express');
-const app = express();
-require('dotenv').config();
-const PORT = process.env.PORT || 4000;
+const cors = require('cors');
 const { PrismaClient } = require('@prisma/client');
+require('dotenv').config();
+
+const app = express();
+const PORT = process.env.PORT || 4000;
 const prisma = new PrismaClient();
 require('./features/tokenCleanup/tokenCleanup');
 
 const Routes = require("./routes/routes");
-const cors = require('cors');
 
-// const allowedOrigins = [
-//   "https://boostify-fe.vercel.app",
-//   "http://localhost:3000",
-// ];
-app.use(cors());
+// Allowed origins
+const allowedOrigins = [
+  "https://boostify-fe.vercel.app",
+  "http://localhost:3000",
+];
+
+// Simplified CORS configuration
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+}));
 
 app.use(express.json());
-
-// CORS middleware configuration
-
-
-// app.use(cors({
-//   origin: function (origin, callback) {
-//     // Allow requests with no origin (like mobile apps, curl requests)
-//     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-//       callback(null, true);
-//     } else {
-//       console.error(`CORS error: Origin ${origin} not allowed by CORS`);
-//       callback(new Error("Not allowed by CORS"));
-//     }
-//   },
-//   credentials: true,
-//   allowedHeaders: ['Authorization', 'Content-Type'],
-//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-// }));
 
 // Test route to verify server is running
 app.get('/', (req, res) => {
