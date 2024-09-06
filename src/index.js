@@ -27,7 +27,9 @@ app.use(cors({
       callback(new Error("Not allowed by CORS"));
     }
   },
-  credentials: true, // Enable if your frontend is using cookies or other credentials
+  credentials: true,
+  allowedHeaders: ['Authorization', 'Content-Type'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
 }));
 
 // Test route to verify server is running
