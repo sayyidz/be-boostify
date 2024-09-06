@@ -26,11 +26,6 @@ const loginUser = async (assisstant_code, password) => {
   };
 
   const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '24h' });
-  // res.cookie('jwt', token, {
-  //   httpOnly: true,
-  //   secure: process.env.NODE_ENV === 'production', // Hanya kirim melalui HTTPS di production
-  //   maxAge: 3600000, // 1 jam
-  // });
 
   const data = {
     status: true,
