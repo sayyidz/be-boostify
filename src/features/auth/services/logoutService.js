@@ -5,10 +5,10 @@ const jwt = require('jsonwebtoken');
 const logoutUser = async (token) => {
     try {
         const decoded = jwt.decode(token);
-
         await prisma.blacklistedToken.create({
             data: {
                 token: token,
+                createdAt: new Date(),
             },
         });
 
