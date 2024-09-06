@@ -16,6 +16,8 @@ const allowedOrigins = [
   "http://localhost:3000", // Local development URL
 ];
 
+app.use(express.json());
+
 // Simplified CORS configuration
 app.use(cors({
   origin: (origin, callback) => {
@@ -30,7 +32,7 @@ app.use(cors({
 }));
 
 // Middleware to parse JSON bodies
-app.use(express.json());
+
 
 // Test route to verify server is running
 app.get('/', (req, res) => {
