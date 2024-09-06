@@ -9,16 +9,17 @@ require('./features/tokenCleanup/tokenCleanup');
 const Routes = require("./routes/routes");
 const cors = require('cors');
 
-const allowedOrigins = [
-  "https://boostify-fe.vercel.app",
-  "http://localhost:3000",
-];
+// const allowedOrigins = [
+//   "https://boostify-fe.vercel.app",
+//   "http://localhost:3000",
+// ];
+app.use(cors());
 
 app.use(express.json());
 
 // CORS middleware configuration
 
-app.use(cors())
+
 // app.use(cors({
 //   origin: function (origin, callback) {
 //     // Allow requests with no origin (like mobile apps, curl requests)
