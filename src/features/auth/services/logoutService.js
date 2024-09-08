@@ -26,7 +26,7 @@ const logoutUser = async (token) => {
 };
 
 const deleteExpiredTokens = async () => {
-    const tenHoursAgo = new Date(Date.now() - 60 * 1000);
+    const tenHoursAgo = new Date(Date.now() - 72 * 60 * 60 * 1000);
 
     try {
         const deletedTokens = await prisma.blacklistedToken.deleteMany({
