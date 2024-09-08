@@ -17,7 +17,7 @@ const Routes = require("./routes/routes");
 // ];
 
 app.use(express.json());
-app.user(cors())
+app.use(cors())
 // Simplified CORS configuration
 // app.use(cors({
 //   origin: (origin, callback) => {
